@@ -1,3 +1,7 @@
+function initialize(){
+    cities();
+};
+
 var cityPop = [
 	{ 
 		city: 'Madison',
@@ -17,13 +21,15 @@ var cityPop = [
 	}
 ];
 
+
+
 function addColumns(cityPop){
     
     document.querySelectorAll("tr").forEach(function(row, i){
 
     	if (i == 0){
 
-    		row.insertAdjacntHTML('beforeend', '<th>City Size</th>');
+    		row.insertAdjacentHTML('beforeend', '<th>City Size</th>');
     	} else {
 
     		var citySize;
@@ -32,9 +38,9 @@ function addColumns(cityPop){
     			citySize = 'Small';
 
     		} else if (cityPop[i-1].population < 500000){
-    			citysize = 'Medium';
+    			citySize = 'Medium';
 
-    		} else {
+    		} else if (cityPop[i-1].population > 500000){
     			citySize = 'Large';
     		};
 
@@ -48,7 +54,7 @@ function addEvents(){
 	document.querySelector("table").addEventListener("mouseover", function(){
 		
 		var color = "rgb(";
-
+	
 		for (var i=0; i<3; i++){
 
 			var random = Math.round(Math.random() * 255);
@@ -63,7 +69,7 @@ function addEvents(){
 		};
 
 		document.querySelector("table").color = color;
-	});
+	};
 
 	function clickme(){
 
@@ -72,3 +78,6 @@ function addEvents(){
 
 	document.querySelector("table").addEventListener("click", clickme)
 };
+
+
+window.onload = cities();
