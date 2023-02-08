@@ -77,7 +77,7 @@ function addEvents(){
 	};
 
 	document.querySelector("table").addEventListener("click", clickme)
-};
+});
 
 
-window.onload = cities();
+window.onload = cities();}
