@@ -118,3 +118,37 @@ function addEvents(){
 
 //call the initialize function when the document has loaded
 document.addEventListener('DOMContentLoaded',initialize)
+
+//Ch03 stuff below//
+
+
+//initialize function called when the script loads
+function initialize(){
+	loadData();
+	debugAjax();
+};
+
+function loadData(){
+	var cities;
+
+	fetch("data/MegaCitiesDone.geojson")
+		.then(function(response){
+			return response.json();
+		})
+		.then(function(response) {
+			cities = response;
+			console.log(cities);
+		})
+}
+
+function debugCallback(myData){
+	document.querySelector("#mydiv").insertAdjacentHTML('beforeend',"GeoJSON data: " + JSON.stringify(myData));
+};
+
+function debugAjax(){
+	fetch("data/MegaCitiesDone.geojson")
+		.then(function(response){
+			return response.json();
+		})
+		.then(debugCallback)
+};

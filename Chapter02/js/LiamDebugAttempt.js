@@ -8,24 +8,34 @@ function initialize(){
 //function to create a table with cities and their populations
 function cities(){
     //define two arrays for cities and population
-    var cities = [
-        'Madison',
-        'Milwaukee',
-        'Green Bay',
-        'Superior'
+    var cityPop = [
+        {
+            city: 'Madison',
+            population: 233209
+        },
+        {
+            city: 'Milwaukee',
+            population: 594833
+        },
+        {
+            city: 'Green Bay',
+            population: 104057
+        },
+        {
+            city: 'Superior',
+            population: 27244
+        }
+        
     ];
-    var population = [
-        233209,
-        594833,
-        104057,
-        27244
-    ];
+    
+    
 
     //create the table element
     var table = document.createElement("table");
 
     //create a header row
     var headerRow = document.createElement("tr");
+    table.appendChild(headerRow);
 
     //add the "City" column
     var cityHeader = document.createElement("th");
@@ -91,7 +101,10 @@ var cityPop = [
 
 function addColumns(cityPop){
     
+    var rows = document.querySelectorAll("tr")
+
     document.querySelectorAll("tr").forEach(function(row, i){
+
 
     	if (i === 0){
 
@@ -102,7 +115,6 @@ function addColumns(cityPop){
 
     		if (cityPop[i-1].population < 100000){
     			citySize = 'Small';
-				console.log('Small');
 
     		} else if (cityPop[i-1].population < 500000){
     			citySize = 'Medium';
@@ -111,12 +123,14 @@ function addColumns(cityPop){
     			citySize = 'Large';
     		};
 
-			row.insertAdjacentHTML = '<td' + citySize + '</td>';
+			row.insertAdjacentHTML('beforeend', '<td' + citySize + '</td>');
     	};
     });
 };
 
 function addEvents(){
+
+    table = document.querySelector("table")
 
 	document.querySelector("table").addEventListener("mouseover", function(){
 		
@@ -126,7 +140,7 @@ function addEvents(){
 
 			var random = Math.round(Math.random() * 255);
 
-			color += "random";
+			color += random;
 
 			if (i<2){
 				color += ",";
